@@ -15,9 +15,8 @@ const MusicTable = props => {
             <th scope='col'>Albun</th>
             <th scope='col'>Release Date</th>
             <th scope='col'>Genre</th>
-            <th scope='col'>Display</th>
             <th scope='col'>Edit</th>
-            <th scope='col'>Release Delete</th>
+            <th scope='col'>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -31,13 +30,18 @@ const MusicTable = props => {
                 <td>{song.release_date}</td>
                 <td>{song.genre}</td>
                 <td>
-                  <button class='button-33'>Display Song</button>
+                  <button class='button btn-secondary' id='displaysong'>
+                    Edit
+                  </button>
                 </td>
                 <td>
-                  <button class='button-33'>Edit</button>
-                </td>
-                <td>
-                  <button class='button-33'>Delete</button>
+                  <button
+                    class='button btn-danger'
+                    id='displaysong'
+                    onClick={() => props.deleteSong(song.id)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             );

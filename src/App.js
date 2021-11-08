@@ -2,6 +2,8 @@ import './App.css';
 import axios from 'axios';
 import React, { Component } from 'react';
 import MusicTable from './Components/MusicTable';
+import 'bootstrap/dist/css/bootstrap.css';
+import { Table, Button, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
 
 class App extends Component {
   constructor(props) {
@@ -20,13 +22,22 @@ class App extends Component {
       songs: response.data,
     });
   };
+  deleteSong = async songId => {
+    let response = await axios.delete(`http://127.0.0.1:8000/music/${songId}/`);
+    console.log(response.data);
+    this.getSongs();
+  };
 
   render() {
     return (
       <div>
         <h1>Songs API</h1>
         {this.state.songs.length > 0 && (
-          <MusicTable songs={this.state.songs} getNewSong={this.getSongs} />
+          <MusicTable
+            songs={this.state.songs}
+            getNewSong={this.getSongs}
+            deleteSong={this.deleteSong}
+          />
         )}
       </div>
     );
