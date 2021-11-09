@@ -1,9 +1,12 @@
 import './App.css';
 import axios from 'axios';
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import MusicTable from './Components/MusicTable';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Table, Button, ModalHeader, ModalFooter, ModalBody } from 'reactstrap';
+import 'bootstrap/dist/js/bootstrap.js';
+import { Button } from 'reactstrap';
+import CreateSong from './Components/CreateSong/CreateSong';
+import FilterBy from './Components/FilterBy/FilterBy';
 
 class App extends Component {
   constructor(props) {
@@ -32,6 +35,7 @@ class App extends Component {
     return (
       <div>
         <h1>Songs API</h1>
+        <FilterBy />
         {this.state.songs.length > 0 && (
           <MusicTable
             songs={this.state.songs}
@@ -39,6 +43,7 @@ class App extends Component {
             deleteSong={this.deleteSong}
           />
         )}
+        <CreateSong />
       </div>
     );
   }
