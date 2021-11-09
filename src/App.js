@@ -31,11 +31,27 @@ class App extends Component {
     this.getSongs();
   };
 
+  filterSong = query => {
+    let filteredSongs = this.state.songs.filter(function (song) {
+      if (
+        song.title.includes(query) ||
+        song.artist.includes(query) ||
+        song.album.includes(query) ||
+        song.genre.includes(query)
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    this.setState({ songs: filteredSongs });
+  };
+
   render() {
     return (
       <div>
         <h1>Songs API</h1>
-        <FilterBy songs={this.getSongs()} />
+        <FilterBy filterSong={this.filterSong} />
         {this.state.songs.length > 0 && (
           <MusicTable
             songs={this.state.songs}
