@@ -35,7 +35,7 @@ class App extends Component {
     return (
       <div>
         <h1>Songs API</h1>
-        <FilterBy />
+        <FilterBy songs={this.getSongs()} />
         {this.state.songs.length > 0 && (
           <MusicTable
             songs={this.state.songs}
